@@ -1,4 +1,8 @@
+
 package ru.naumen.collection.task1;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Дано:
@@ -46,8 +50,13 @@ public class Task1
      * <p><b>Мы не забыли определить equals и hashcode у класса {@link Ticket}</b></p>
      * <p>Достаточно их определить только для id, т.к. он уникален</p>
      */
+
+    // храним соответсвия билетов с доп.услугами в HashMap.
+    // Операция получения в HashMap в общем отрабатывает за O(1), если нет большого количества коллизий (иначе O(n))
+    // В данном случае мы отчасти это гарантируем переопределением hashCode и equals в классе Ticket
+    private Map<Ticket, Goods> accordanceIdGoods = new HashMap<>();
+
     public Goods getGoods(Ticket ticket) {
-        // TODO реализовать
-        return null;
+        return accordanceIdGoods.get(ticket);
     }
 }
