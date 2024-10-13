@@ -23,7 +23,7 @@ public class Ticket {
             return true;
         if(obj instanceof Ticket){
             Ticket that = (Ticket) obj;
-            return (that.id == this.id) && (that.client.equals(this.client));
+            return that.id == this.id;
         }
         return false;
     }
