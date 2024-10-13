@@ -1,6 +1,7 @@
 package ru.naumen.collection.task2;
 
 import java.util.Arrays;
+import java.util.Objects;
 
 /**
  * Пользователь
@@ -16,17 +17,15 @@ public class User {
     //переопределение методов чтобы можно было сравнивать экземпляры класса и хранить их по хэшу
     @Override
     public int hashCode() {
-        return username.hashCode() + email.hashCode() + Arrays.hashCode(passwordHash);
+        return Objects.hash(username, email, Arrays.hashCode(passwordHash));
     }
 
     @Override
-    public boolean equals(Object obj){
-        if(obj == this)
-            return true;
-        if(obj instanceof User){
-            User that = (User) obj;
-            return username.equals(that.username) && email.equals(that.email) && Arrays.equals(passwordHash, that.passwordHash);
-        }
-        return false;
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        User user = (User) o;
+        return Objects.equals(username, user.username) && Objects.equals(email, user.email) && Objects.deepEquals(passwordHash, user.passwordHash);
     }
+
 }
